@@ -1,11 +1,8 @@
-before_script:
-  - apt-get update -qq
-  - apt-get install -y -qq build-essential lintian
-
-
 build_debian_package:
   script:
-    - ./configure --prefix=/usr && make deb && sudo dpkg -i firejail*.deb
+    - apt-get update -qq
+    - apt-get install -y -qq build-essential lintian
+    - ./configure --prefix=/usr && make deb && dpkg -i firejail*.deb
 
 build_redhat_package:
     image: fedora:latest
