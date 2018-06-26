@@ -1,28 +1,28 @@
-build_debian_package:
-    image: ubuntu:trusty
-    script:
-    - apt-get update -qq
-    - apt-get install -y -qq build-essential lintian
-    - ./configure --prefix=/usr && make deb && dpkg -i firejail*.deb
+# build_debian_package:
+#     image: ubuntu:trusty
+#     script:
+#     - apt-get update -qq
+#     - apt-get install -y -qq build-essential lintian
+#     - ./configure --prefix=/usr && make deb && dpkg -i firejail*.deb
 
-build_redhat_package:
-    image: centos:latest
-    script:
-        - yum update -y
-        - yum install -y rpm-build
-        - ./configure --prefix=/usr && make rpms && yum install -y firejail*.rpm
+# build_redhat_package:
+#     image: centos:latest
+#     script:
+#         - yum update -y
+#         - yum install -y rpm-build
+#         - ./configure --prefix=/usr && make rpms && yum install -y firejail*.rpm
 
 build_fedora_package:
     image: fedora:latest
     script:
         - dnf update -y
-        - dnf install -y rpm-build
+        - dnf install -y rpm-build gcc
         - ./configure --prefix=/usr && make rpms && dnf install -y firejail*.rpm
 
-build_src_package:
-    image: alpine:latest
-    script:
-        - apk update
-        - apk upgrade
-        - apk add build-base
-        - ./configure --prefix=/usr && make && make install-strip
+# build_src_package:
+#     image: alpine:latest
+#     script:
+#         - apk update
+#         - apk upgrade
+#         - apk add build-base
+#         - ./configure --prefix=/usr && make && make install-strip
