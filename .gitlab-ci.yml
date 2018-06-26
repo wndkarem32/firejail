@@ -1,11 +1,19 @@
 build_debian_package:
+    image: ubuntu:warty
   script:
     - apt-get update -qq
     - apt-get install -y -qq build-essential lintian
     - ./configure --prefix=/usr && make deb && dpkg -i firejail*.deb
 
 build_redhat_package:
+    image: centos:latest
+    script:
+        - yum update -y
+        - ./configure --prefix=/usr && make rpms && yum install -y firejail*.rpm
+
+build_fedora_package:
     image: fedora:latest
     script:
-        - dnf install -y inxi
-        - inxi -Fxz
+        - dnf update -y
+        - ./configure --prefix=/usr && make rpms && dnf install -y firejail*.rpm
+
