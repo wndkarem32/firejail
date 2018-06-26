@@ -9,14 +9,14 @@ build_redhat_package:
     image: centos:latest
     script:
         - yum update -y
-        - yum install rpm-build
+        - yum install -y rpm-build
         - ./configure --prefix=/usr && make rpms && yum install -y firejail*.rpm
 
 build_fedora_package:
     image: fedora:latest
     script:
         - dnf update -y
-        - dnf install rpm-build
+        - dnf install -y rpm-build
         - ./configure --prefix=/usr && make rpms && dnf install -y firejail*.rpm
 
 build_src_package:
