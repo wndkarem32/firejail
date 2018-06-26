@@ -1,6 +1,6 @@
 build_debian_package:
     image: ubuntu:warty
-  script:
+    script:
     - apt-get update -qq
     - apt-get install -y -qq build-essential lintian
     - ./configure --prefix=/usr && make deb && dpkg -i firejail*.deb
@@ -17,3 +17,10 @@ build_fedora_package:
         - dnf update -y
         - ./configure --prefix=/usr && make rpms && dnf install -y firejail*.rpm
 
+build_src_package:
+    image: alpine:latest
+    script:
+        - apk update
+        - apk upgrade
+        - apk add build-base
+        - ./configure --prefix=/usr && make && make install-strip
