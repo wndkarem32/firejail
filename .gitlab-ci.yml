@@ -1,8 +1,10 @@
+image: fedora:latest
+
 before_script:
   - apt-get update -qq
-  - apt-get install -y -qq build-essential
+  - apt-get install -y -qq build-essential lintian
 
 
-demo_first:
+build_debian_package:
   script:
-    - which gcc
+    - ./configure --prefix=/usr && make deb && sudo dpkg -i firejail*.deb
