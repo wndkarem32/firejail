@@ -1,5 +1,3 @@
-image: fedora:latest
-
 before_script:
   - apt-get update -qq
   - apt-get install -y -qq build-essential lintian
@@ -8,3 +6,9 @@ before_script:
 build_debian_package:
   script:
     - ./configure --prefix=/usr && make deb && sudo dpkg -i firejail*.deb
+
+build_redhat_package:
+    image: fedora:latest
+    script:
+        - dnf install -y inxi
+        - inxi -Fxz
