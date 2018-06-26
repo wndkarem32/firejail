@@ -17,7 +17,7 @@ build_fedora_package:
     script:
         - dnf update -y
         - dnf install -y rpm-build gcc make
-        - ./configure --prefix=/usr && make rpms && dnf install -y firejail*.rpm
+        - ./configure --prefix=/usr && make rpms && rpm -i firejail*.rpm
 
 # build_src_package:
 #     image: alpine:latest
