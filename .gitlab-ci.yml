@@ -48,4 +48,4 @@ run_code_tests:
     script:
         - apt-get update -qq
         - apt-get install -y -qq build-essential expect csh xzdec lintian fakeroot
-        - ( ./configure --prefix=/usr && make && make install && make test-travis )
+        - ( ./configure --prefix=/usr && make && make install && SHELL=csh make test-travis )
