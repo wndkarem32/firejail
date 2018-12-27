@@ -49,4 +49,4 @@ run_code_tests:
         - apk update
         - apk upgrade
         - apk add build-base linux-headers expect fakeroot
-        - ./configure --prefix=/usr && make && sudo make install && make test-travis
+        - ./configure --prefix=/usr && make && make install && make test-travis
