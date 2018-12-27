@@ -44,8 +44,9 @@ build_src_package:
         - ./configure --prefix=/usr && make && make install-strip
 
 run_code_tests:
-    image: ubuntu:trusty
+    image: alpine:latest
     script:
-        - apt-get update -qq
-        - apt-get install -y -qq build-essential expect csh xzdec lintian fakeroot
-        - ( ./configure --prefix=/usr && make && make install && SHELL=csh make test-travis )
+        - apk update
+        - apk upgrade
+        - apk add build-base linux-headers expect tcsh fakeroot
+        - ( ./configure --prefix=/usr && make && make install && SHELL=tcsh make test-travis )
