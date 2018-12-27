@@ -1,9 +1,12 @@
-# Basic notes: builds firejail on 5 different systems for 2 package systems:
-# 1. Debian-based systems. Use debian:jessie to ensure reasonable backwards
-# compat and ubuntu:latest for new setups
-# 2. Redhat-based systems. Use centos:latest for reasonable backwards compat
-# and fedora:latest for new setups
-# 3. Alpine for installing directly from source
+# Basic notes:
+# A. builds firejail on 5 different systems for 2 package systems:
+#  1. Debian-based systems. Use debian:jessie to ensure reasonable backwards
+#  compat and ubuntu:latest for new setups
+#  2. Redhat-based systems. Use centos:latest for reasonable backwards compat
+#  and fedora:latest for new setups
+#  3. Alpine for installing directly from source
+#
+# B. Run code tests on alpine image (travis CI on GitHub is using Ubuntu Trusty)
 build_ubuntu_package:
     image: ubuntu:latest
     script:
@@ -39,3 +42,11 @@ build_src_package:
         - apk upgrade
         - apk add build-base linux-headers
         - ./configure --prefix=/usr && make && make install-strip
+
+run_code_tests:
+    image: alpine:latest
+    script:
+        - apk update
+        - apk upgrade
+        - apk add build-base linux-headers expect fakeroot
+        - ./configure --prefix=/usr && make && sudo make install && make test-travis
