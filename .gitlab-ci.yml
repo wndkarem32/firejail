@@ -48,5 +48,5 @@ run_code_tests:
     script:
         - apk update
         - apk upgrade
-        - apk add build-base linux-headers expect tcsh fakeroot
+        - apk add build-base linux-headers expect tcsh fakeroot grep
         - ( ./configure --prefix=/usr && make && make install && SHELL=tcsh make test-travis )
