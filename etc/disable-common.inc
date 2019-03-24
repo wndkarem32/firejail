@@ -130,7 +130,8 @@ blacklist ${RUNUSER}/kdesud_*
 
 # gnome
 # contains extensions, last used times of applications, and notifications
-blacklist ${HOME}/.local/share/gnome-shell
+read-only ${HOME}/.local/share/gnome-shell
+blacklist ${HOME}/.local/share/gnome-shell/application_state
 
 # systemd
 blacklist ${HOME}/.config/systemd
